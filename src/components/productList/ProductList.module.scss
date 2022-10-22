@@ -1,0 +1,115 @@
+.container {
+    max-width: var(--max-width-default);
+    width: 100%;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+
+.banner {
+    height: 410px;
+    position: relative;
+    margin: 0 5px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.header {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    padding: 0 30px;
+
+    a {
+        font-size: 30px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+}
+
+.desc {
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+
+    padding: 0 30px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.more-btn {
+    position: absolute;
+    left: 30px;
+    bottom: 50px;
+
+    width: unset;
+    height: 40px;
+    padding: 0 25px;
+    text-transform: uppercase;
+}
+
+// list
+
+.list {
+    padding: 0 5px;
+
+    &:hover {
+        .next-btn,
+        .prev-btn {
+            display: block;
+        }
+    }
+}
+
+.prev-btn,
+.next-btn {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #fff;
+    background-color: var(--red-color);
+    font-size: 1.6rem;
+
+    width: 36px;
+    height: 36px;
+    z-index: 20;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #031d87;
+    }
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+@media screen and (max-width: 990px) {
+    .container {
+        grid-template-columns: calc(100% / 3) calc(100% / 3 * 2);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 100%;
+        padding: 0 15px;
+    }
+
+    .banner {
+        margin-bottom: 10px;
+    }
+}

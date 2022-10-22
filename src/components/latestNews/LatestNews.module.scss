@@ -1,0 +1,130 @@
+.container {
+    width: 100%;
+    max-width: var(--max-width-default);
+    margin: auto;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+    overflow: hidden;
+
+    a {
+        font-size: 26px;
+        color: var(--text-color);
+        font-weight: 400;
+        position: relative;
+        padding: 0 20px;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            height: 1px;
+            background-color: #e8e8e8;
+            width: 999px;
+            left: -999px;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            height: 1px;
+            background-color: #e8e8e8;
+            width: 999px;
+            right: -999px;
+        }
+    }
+}
+
+.content {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+.item {
+    display: block;
+    width: 100%;
+    transition: all linear 0.25s;
+
+    &:hover {
+        box-shadow: 0px 0px 16px rgb(0 0 0 / 12%);
+    }
+}
+
+.header-item {
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+    img {
+        width: 100%;
+        object-fit: fill;
+    }
+}
+
+.date {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 10px 20px;
+    text-align: center;
+
+    background-color: #fff;
+    opacity: 0.9;
+    color: #707070;
+
+    b {
+        margin: 0 4px;
+    }
+}
+
+.content-item {
+    padding: 25px;
+    background-color: #f5f6fb;
+
+    h4 {
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        padding-bottom: 5px;
+        color: #252525;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: #707070;
+        padding-top: 5px;
+        font-size: 13px;
+        text-align: center;
+    }
+}
+
+.slide-bullet {
+    height: 8px;
+    width: 8px;
+    background-color: #cdcfdd;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+.slide-bullet-active {
+    width: 24px;
+    border-radius: 8px;
+    background-color: var(--red-color);
+}
+
+@media screen and (max-width: 768px) {
+    .header-item {
+        img {
+            width: auto;
+        }
+    }
+}

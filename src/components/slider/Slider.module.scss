@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+}
+
+.slider {
+    width: 100%;
+    img {
+        width: 100%;
+        object-fit: fill;
+    }
+}
+
+.slide-bullet {
+    height: 8px;
+    width: 8px;
+    background-color: #cdcfdd;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+.slide-bullet-active {
+    width: 24px;
+    border-radius: 8px;
+    background-color: var(--red-color);
+}

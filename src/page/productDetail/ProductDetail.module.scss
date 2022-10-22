@@ -1,0 +1,256 @@
+.content {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: auto;
+    width: 100%;
+    max-width: var(--max-width-default);
+}
+
+// thumb
+
+.thumb {
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 4px;
+    margin-bottom: 20px;
+
+    img {
+        width: 100%;
+        overflow: fill;
+    }
+}
+
+.slide {
+    width: 100%;
+    padding: 0 10px;
+    position: relative;
+    text-align: center;
+
+    &:hover {
+        .next-btn,
+        .prev-btn {
+            opacity: 1;
+        }
+    }
+}
+
+.slide-img {
+    height: 100px;
+
+    img {
+        height: 100%;
+        object-fit: fill;
+    }
+}
+
+.next-btn,
+.prev-btn {
+    opacity: 0;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: #fff;
+    background-color: var(--red-color);
+    z-index: 10;
+    font-size: 1.6rem;
+    transition: all linear 0.25s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #011c85;
+    }
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+// right
+
+.right {
+    padding: 0 5px 0 15px;
+    margin-bottom: 30px;
+}
+
+.right-title {
+    font-size: 24px;
+    color: var(--text-color);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.right-status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+
+    span {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin: 0 8px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        p {
+            text-transform: uppercase;
+            color: green;
+            font-weight: 500;
+        }
+    }
+}
+
+.right-separate {
+    margin: 20px 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ebebeb;
+}
+
+.right-price-group {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.new-price {
+    color: var(--red-color);
+    font-size: 28px;
+}
+
+.old-price {
+    color: #777777;
+    text-decoration: line-through;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.size-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    h4 {
+        width: 100%;
+        color: #707070;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+}
+
+.size-box {
+    position: relative;
+    width: 60px;
+    height: 36px;
+    margin: 0 10px 10px 0;
+    user-select: none;
+
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 2;
+
+        &:checked + label {
+            border-color: var(--red-color);
+            color: var(--red-color);
+        }
+    }
+
+    label {
+        position: absolute;
+        width: 100%;
+        border: 2px solid #ebebeb;
+        background-color: #fff;
+
+        line-height: 32px;
+        font-size: 14px;
+        text-align: center;
+        color: var(--text-color);
+    }
+    .sold-out {
+        background-color: #f1f5f4;
+        text-decoration: line-through;
+    }
+}
+
+.right-btn-group {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.right-btn-group-quality {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+
+    button {
+        cursor: pointer;
+        padding: 10px 20px;
+        font-size: 30px;
+        color: #707070;
+        font-weight: 700;
+    }
+
+    input {
+        font-size: 20px;
+        text-align: center;
+        width: 78px;
+        height: 40px;
+        border: 1px solid #ebebeb;
+    }
+}
+
+.right-btn {
+    width: 190px;
+}
+
+.hotline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    margin-bottom: 20px;
+
+    span {
+        font-size: 16px;
+        color: var(--text-color);
+        font-weight: 700;
+    }
+
+    a {
+        font-size: 18px;
+        color: var(--red-color);
+        font-weight: 700;
+        margin-left: 8px;
+
+        &:hover {
+            color: #011c85;
+        }
+    }
+}
+
+.size-chart {
+    font-size: 18px;
+    color: #2980b9;
+    font-weight: 600;
+}

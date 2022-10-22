@@ -1,0 +1,50 @@
+.header {
+    margin: 40px 0 20px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+    min-width: 100%;
+
+    &:hover {
+        color: var(--red-color);
+        cursor: default;
+    }
+}
+
+.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 20;
+    padding: 4px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    a {
+        &:hover {
+            color: var(--red-color);
+        }
+    }
+}
+
+.content-item {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    color: #acacac;
+    line-height: 35px;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    .header {
+        margin: 20px 0;
+    }
+}

@@ -1,0 +1,25 @@
+.content {
+    width: 100%;
+    max-width: var(--max-width-default);
+    padding: 0 var(--default-padding);
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 65px;
+
+    img {
+        height: 100%;
+        object-fit: fill;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        height: 50px;
+    }
+}
