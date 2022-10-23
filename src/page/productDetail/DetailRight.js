@@ -21,6 +21,8 @@ const size = [
     { size: 44, soldOut: true },
 ];
 
+const summary = [];
+
 const DetailRight = () => {
     const [sizeSelect, setSizeSelect] = useState();
     const [isSoldOut, setIsSoldOut] = useState(false);
