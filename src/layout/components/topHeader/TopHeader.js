@@ -50,7 +50,7 @@ const TopHeader = () => {
                     {RIGHT.map((item, index) => {
                         return (
                             <Link
-                                to={item.href}
+                                to={item.path}
                                 key={index}
                                 className={cx('item')}
                             >

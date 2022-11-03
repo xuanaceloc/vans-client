@@ -1,83 +1,92 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
 
 import style from './Sidebar.module.scss';
 import Item from './Item';
 import config from '../../config';
 import FilterBox from './FilterBox';
+import SidebarItem from './SidebarItem';
 
 const cx = classNames.bind(style);
 
+const variant = {
+    open: {
+        x: '0',
+    },
+    close: {
+        x: '100%',
+    },
+};
+
 const Sidebar = () => {
-    const [filter, setFilter] = useState({
-        color: '',
-        sale: [],
-    });
+    const isDesktop = useMediaQuery({ query: '(min-width : 1200px)' });
+    const [isShowMenu, setIsShowMenu] = useState(false);
 
-    const handleSelectColor = (e) => {
-        const data = e.target.dataset.color;
-        setFilter((prev) => {
-            return { ...prev, color: data };
-        });
+    const handleToggleMenu = () => {
+        setIsShowMenu((prev) => !prev);
     };
 
-    const handleSelectSale = (e) => {
-        const data = e.target.dataset.sale;
-    };
+    useEffect(() => {
+        if (isDesktop) {
+            setIsShowMenu(true);
+        } else {
+            setIsShowMenu(false);
+        }
+    }, [isDesktop]);
 
     return (
-        <div className={cx('container')}>
-            <div className={cx('content')}>
-                <FilterBox title="Danh mục">
-                    <div className={cx('filter-select')}>
-                        {config.sidebarFilter.menu.map((item, index) => {
-                            return <Item data={item} key={index} />;
-                        })}
+        <>
+            <motion.div
+                className={cx('container')}
+                animate={isShowMenu ? 'open' : 'close'}
+                transition={{ duration: 0.25 }}
+                variants={variant}
+            >
+                {!isDesktop && (
+                    <div
+                        className={cx('filter-menu')}
+                        onClick={handleToggleMenu}
+                    >
+                        {isShowMenu ? (
+                            <FontAwesomeIcon icon={faXmark} />
+                        ) : (
+                            <FontAwesomeIcon icon={faFilter} />
+                        )}
                     </div>
-                </FilterBox>
-                <FilterBox title="Màu sắc">
-                    <div className={cx('filter-select-color', 'filter-select')}>
-                        {config.sidebarFilter.color.map((color, index) => {
-                            return (
-                                <div
-                                    onClick={handleSelectColor}
-                                    key={index}
-                                    data-color={color}
-                                    className={cx('color-select', `${color}`)}
-                                ></div>
-                            );
-                        })}
-                    </div>
-                </FilterBox>
-                <FilterBox title="SALE OFF">
-                    <div className={cx('filter-select')}>
-                        {config.sidebarFilter.sale.map((sale, i) => {
-                            let isActive = false;
-                            if (filter.sale.length > 0) {
-                                isActive = filter.sale.some(
-                                    (filterSale) => sale === filterSale,
-                                );
-                            }
-
-                            return (
-                                <div
-                                    key={i}
-                                    className={cx('filter-select-option', {
-                                        active: isActive,
-                                    })}
-                                >
-                                    <span
-                                        data-sale={sale}
-                                        onClick={handleSelectSale}
-                                    ></span>
-                                    <p>sale {sale}</p>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </FilterBox>
-            </div>
-        </div>
+                )}
+                <div className={cx('content')}>
+                    <FilterBox title="Danh mục">
+                        <div className={cx('filter-select')}>
+                            {config.sidebarFilter.menu.map((item, index) => {
+                                return <Item data={item} key={index} />;
+                            })}
+                        </div>
+                    </FilterBox>
+                    <SidebarItem
+                        title={config.sidebarFilter.color.title}
+                        data={config.sidebarFilter.color.content}
+                        color
+                    />
+                    <SidebarItem
+                        title={config.sidebarFilter.sale.title}
+                        data={config.sidebarFilter.sale.content}
+                    />
+                    <SidebarItem
+                        title={config.sidebarFilter.brand.title}
+                        data={config.sidebarFilter.brand.content}
+                    />
+                    <SidebarItem
+                        title={config.sidebarFilter.sort.title}
+                        data={config.sidebarFilter.sort.content}
+                        sort
+                    />
+                </div>
+            </motion.div>
+        </>
     );
 };
 

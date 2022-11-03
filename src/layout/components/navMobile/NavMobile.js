@@ -32,7 +32,7 @@ const NavMobile = ({ onClose }) => {
 
                 <ul className={cx('list')}>
                     {config.nav.map((nav, index) => (
-                        <Item key={index} nav={nav} />
+                        <Item key={index} nav={nav} onClose={onClose} />
                     ))}
                 </ul>
             </motion.div>

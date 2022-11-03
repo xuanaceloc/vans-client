@@ -45,6 +45,36 @@ ul {
     list-style: none;
 }
 
+// color filter background color
+
+.black {
+    background-color: #000;
+}
+.white {
+    background-color: #fff;
+}
+.red {
+    background-color: red;
+}
+.blue {
+    background-color: blue;
+}
+.green {
+    background-color: green;
+}
+.yellow {
+    background-color: yellow;
+}
+.brown {
+    background-color: brown;
+}
+.violet {
+    background-color: #800080;
+}
+.grey {
+    background-color: grey;
+}
+
 @media screen and (max-width: 990px) {
     :root {
         --max-width-default: 720px;

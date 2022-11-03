@@ -1,0 +1,33 @@
+.container {
+    max-width: var(--max-width-default);
+    width: 100%;
+    margin: auto;
+}
+
+.title {
+    text-decoration: underline;
+    font-size: 14px;
+    color: #707070;
+    margin-bottom: 15px;
+}
+
+.content {
+    p {
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: #707070;
+        line-height: 1.4;
+
+        span {
+            color: var(--red-color);
+            font-weight: bold;
+            text-decoration: underline;
+            padding-right: 4px;
+        }
+
+        img {
+            max-width: 100%;
+            object-fit: contain;
+        }
+    }
+}

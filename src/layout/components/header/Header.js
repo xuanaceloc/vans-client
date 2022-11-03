@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AnimatePresence } from 'framer-motion';
 
@@ -17,6 +17,7 @@ const cx = classNames.bind(style);
 const Header = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const isDesktop = useMediaQuery({ query: '(min-width : 990px)' });
+
     const handleOpenMenu = () => {
         setOpenMenu(true);
     };
@@ -24,6 +25,10 @@ const Header = () => {
     const handleCloseMenu = () => {
         setOpenMenu(false);
     };
+
+    useEffect(() => {
+        setOpenMenu(false);
+    }, []);
 
     return (
         <div>

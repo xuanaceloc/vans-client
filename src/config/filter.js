@@ -93,16 +93,78 @@ export const sidebarFilter = {
             content: 'latest vans news',
         },
     ],
-    color: [
-        'black',
-        'white',
-        'red',
-        'blue',
-        'green',
-        'yellow',
-        'brown',
-        'violet',
-        'grey',
-    ],
-    sale: ['10%', '30%', '50%'],
+    color: {
+        title: 'Màu sắc',
+        content: [
+            { value: 'black', content: '' },
+            { value: 'white', content: '' },
+            { value: 'red', content: '' },
+            { value: 'blue', content: '' },
+            { value: 'green', content: '' },
+            { value: 'yellow', content: '' },
+            { value: 'brown', content: '' },
+            { value: 'violet', content: '' },
+            { value: 'grey', content: '' },
+            { value: 'multicolour', content: '' },
+        ],
+    },
+    sale: {
+        title: 'SALE OFF',
+        content: [
+            {
+                value: '10',
+                content: 'sale 10%',
+            },
+            {
+                value: '30',
+                content: 'sale 30%',
+            },
+            {
+                value: '50',
+                content: 'sale 50%',
+            },
+        ],
+    },
+    brand: {
+        title: 'Thương hiệu',
+        content: [
+            {
+                value: 'Vans',
+                content: 'Vans',
+            },
+        ],
+    },
+    sort: {
+        title: 'Sắp xếp theo',
+        content: [
+            {
+                value: 'default',
+                content: 'Mặc định',
+            },
+            {
+                value: 'a asc',
+                content: 'A -> Z',
+            },
+            {
+                value: 'a desc',
+                content: 'Z -> A',
+            },
+            {
+                value: 'price-asc',
+                content: 'Giá tăng dần',
+            },
+            {
+                value: 'price-desc',
+                content: 'Giá giảm dần',
+            },
+            {
+                value: 'new product',
+                content: ' Hàng mới nhất',
+            },
+            {
+                value: 'old product',
+                content: 'Hàng cũ nhất',
+            },
+        ],
+    },
 };

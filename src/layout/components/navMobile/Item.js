@@ -7,7 +7,7 @@ import { useState } from 'react';
 import style from './NavMobile.module.scss';
 const cx = classNames.bind(style);
 
-const Item = ({ nav }) => {
+const Item = ({ nav, onClose }) => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const isParent = nav.children;
 
@@ -17,7 +17,9 @@ const Item = ({ nav }) => {
 
     return (
         <li className={cx('item')}>
-            <Link to={nav.path}>{nav.content}</Link>
+            <Link to={nav.path} onClick={onClose}>
+                {nav.content}
+            </Link>
             {isParent && (
                 <span onClick={handleToggleMenu}>
                     {isOpenMenu ? (
@@ -35,6 +37,7 @@ const Item = ({ nav }) => {
                                 className={cx('sub-menu-link')}
                                 key={index}
                                 to={nav.path}
+                                onClick={onClose}
                             >
                                 {nav.content}
                             </Link>

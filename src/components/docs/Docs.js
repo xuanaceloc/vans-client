@@ -4,24 +4,21 @@ import style from './Docs.module.scss';
 
 const cx = classNames.bind(style);
 
-const data = [
-    {
-        src: 'https://bizweb.dktcdn.net/100/140/774/files/tui-vans-m-ward-cross-body-pack-red-check-vn0a2zxxrnd-jpg-1.jpg?v=1659259794259',
-    },
-    {
-        content: '',
-    },
-];
-
-const Docs = () => {
+const Docs = ({ data = [] }) => {
     return (
-        <div>
+        <div className={cx('container')}>
             {data.map((data, index) => {
                 return (
-                    <p key={index}>
-                        {data.src && <img src={data.src} alt="" />}
-                        {data.content}
-                    </p>
+                    <div key={index} className={cx('item')}>
+                        {!!data.src && <img src={data.src} alt="" />}
+                        {!!data.subTitle && <span>{data.subTitle}</span>}
+                        {!!data.content && (
+                            <p className={cx({ center: data.center })}>
+                                {data.content}
+                            </p>
+                        )}
+                        {!!data.title && <h4>{data.title}</h4>}
+                    </div>
                 );
             })}
         </div>

@@ -1,0 +1,107 @@
+.title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.content {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+.item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    margin-bottom: 16px;
+
+    label {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-color);
+        margin-bottom: 4px;
+        margin-left: 4px;
+
+        span {
+            color: var(--red-color);
+            font-size: 16px;
+            margin-left: -4px;
+        }
+    }
+
+    input {
+        width: 100%;
+        border: 1px solid #e1e1e1;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+    }
+}
+
+.submit-btn {
+    text-transform: uppercase;
+    &:hover {
+        color: var(--red-color);
+        border: 1px solid var(--red-color);
+        background-color: #fff;
+    }
+}
+
+.quenmk {
+    margin: 25px 0;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-color);
+
+    &:hover {
+        cursor: pointer;
+        color: var(--red-color);
+    }
+}
+
+.change-page {
+    margin-top: 40px;
+    font-size: 14px;
+    color: var(--text-color);
+    text-align: center;
+
+    a {
+        color: var(--red-color);
+        text-decoration: underline;
+    }
+}
+
+.content-bottom {
+    margin: 30px;
+}
+
+.content-bottom-title {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.social-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-login-item {
+    width: 129px;
+    margin: 0 10px;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+}

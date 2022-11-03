@@ -1,0 +1,38 @@
+.content {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 0 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin: 20px 0 10px;
+    font-size: 36px;
+    color: var(--text-color);
+}
+
+.sub-title {
+    margin: 0 auto 15px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 15px;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .content {
+        max-width: 720px;
+    }
+}

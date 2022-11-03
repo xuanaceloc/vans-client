@@ -1,64 +1,25 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper';
 
 import style from './LatestNews.module.scss';
+import LatestNewsItem from './LatestNewsItem';
+import { NewsContext } from '../../context/news';
+import config from '../../config';
 
 const cx = classNames.bind(style);
 
-const demoNewsPosts = [
-    {
-        src: 'https://bizweb.dktcdn.net/thumb/large/100/140/774/articles/desktop3.jpg?v=1665417347433',
-        date: '10/10/2022',
-        author: 'VANS Việt Nam',
-        title: 'CON CONCEPT X VANS – NGUỒN CẢM HỨNG THỜI TRANG PUNK',
-        desc: '     Giống như các dự án trước đây của họ, nhà bán lẻ và thương hiệu giày dép có t...',
-    },
-    {
-        src: 'https://bizweb.dktcdn.net/thumb/large/100/140/774/articles/one-piece-vans-authentic-teaser-0.jpg?v=1665415143090',
-        date: '10/10/2022',
-        author: 'VANS Việt Nam',
-        title: 'HÌNH ẢNH ĐẦU TIÊN TỪ LẦN COLLAB ĐÁNG MONG CHỜ ONE PIECE X VANS',
-        desc: '      Không phụ lòng sự mong đợi của người hâm mộ, ngay khi One Piece Film: Red ch...',
-    },
-    {
-        src: 'https://bizweb.dktcdn.net/thumb/large/100/140/774/articles/one-piece-vans-authentic-teaser-0.jpg?v=1665415143090',
-        date: '10/10/2022',
-        author: 'VANS Việt Nam',
-        title: 'HÌNH ẢNH ĐẦU TIÊN TỪ LẦN COLLAB ĐÁNG MONG CHỜ ONE PIECE X VANS',
-        desc: '      Không phụ lòng sự mong đợi của người hâm mộ, ngay khi One Piece Film: Red ch...',
-    },
-    {
-        src: 'https://bizweb.dktcdn.net/thumb/large/100/140/774/articles/one-piece-vans-authentic-teaser-0.jpg?v=1665415143090',
-        date: '10/10/2022',
-        author: 'VANS Việt Nam',
-        title: 'HÌNH ẢNH ĐẦU TIÊN TỪ LẦN COLLAB ĐÁNG MONG CHỜ ONE PIECE X VANS',
-        desc: '      Không phụ lòng sự mong đợi của người hâm mộ, ngay khi One Piece Film: Red ch...',
-    },
-    {
-        src: 'https://bizweb.dktcdn.net/thumb/large/100/140/774/articles/one-piece-vans-authentic-teaser-0.jpg?v=1665415143090',
-        date: '10/10/2022',
-        author: 'VANS Việt Nam',
-        title: 'HÌNH ẢNH ĐẦU TIÊN TỪ LẦN COLLAB ĐÁNG MONG CHỜ ONE PIECE X VANS',
-        desc: '      Không phụ lòng sự mong đợi của người hâm mộ, ngay khi One Piece Film: Red ch...',
-    },
-    {
-        src: 'https://bizweb.dktcdn.net/thumb/large/100/140/774/articles/one-piece-vans-authentic-teaser-0.jpg?v=1665415143090',
-        date: '10/10/2022',
-        author: 'VANS Việt Nam',
-        title: 'HÌNH ẢNH ĐẦU TIÊN TỪ LẦN COLLAB ĐÁNG MONG CHỜ ONE PIECE X VANS',
-        desc: '      Không phụ lòng sự mong đợi của người hâm mộ, ngay khi One Piece Film: Red ch...',
-    },
-];
-
 const LatestNews = () => {
-    const [newsPosts, setNewsPosts] = useState(demoNewsPosts);
     const [slidesPerView, setSlidesPerView] = useState(3);
+    const { news, getNewsList } = useContext(NewsContext);
+
+    // get news list
+    useEffect(() => {
+        getNewsList();
+    }, []);
 
     const isTablet = useMediaQuery({ query: '(max-width : 990px)' });
     const isMobile = useMediaQuery({ query: '(max-width : 768px)' });
@@ -93,28 +54,20 @@ const LatestNews = () => {
                         bulletActiveClass: cx('slide-bullet-active'),
                     }}
                 >
-                    {newsPosts.map((post, index) => {
+                    {news.newsList.map((post, index) => {
                         return (
                             <SwiperSlide key={index}>
-                                <Link to="/" className={cx('item')}>
-                                    <div className={cx('header-item')}>
-                                        <img src={post.src} alt="" />
-                                        <div className={cx('date')}>
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faCalendarDays}
-                                                />
-                                            </span>
-                                            <b>{post.date}</b> Đăng bởi:{' '}
-                                            <b>{post.author}</b>
-                                        </div>
-                                    </div>
-
-                                    <div className={cx('content-item')}>
-                                        <h4>{post.title}</h4>
-                                        <p>{post.desc}</p>
-                                    </div>
-                                </Link>
+                                <LatestNewsItem
+                                    srcImg={post.img[0]}
+                                    author={post.author}
+                                    date={post.date}
+                                    desc={post.content[0]}
+                                    title={post.title}
+                                    id={post._id}
+                                    path={
+                                        config.publicRoutes.latestVansNewsDetail
+                                    }
+                                />
                             </SwiperSlide>
                         );
                     })}

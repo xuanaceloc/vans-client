@@ -1,37 +1,67 @@
 import classNames from 'classnames/bind';
+import { useContext, useState, useEffect } from 'react';
 
 import style from './Cart.module.scss';
 import CartItem from './CartItem';
 import Button from '../../../components/button';
+import { CartContext } from '../../../context/cart';
+import config from '../../../config';
 
 const cx = classNames.bind(style);
 
 const Cart = () => {
+    const { cart } = useContext(CartContext);
+    const [cartList, setCartList] = useState([]);
+
+    useEffect(() => {
+        setCartList(cart.cartList);
+    }, [cart.cartList]);
+
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('content')}>
-                <CartItem
-                    name="VANS VAULT OG CLASSIC SLIP ON CHECKERBOARD/OFF WHITE"
-                    price="2.600.000"
-                    src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t1.6435-9/200206140_976469796440596_1130803011116164899_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=1_3fhaX2OyIAX8r-Qt7&_nc_ht=scontent.fsgn5-14.fna&oh=00_AT-pIAL3oxUGDd5hqGmHWF6ePFU-7HA0axUeAY1_lcv4Vg&oe=6373F606"
-                    to="/"
-                />
-            </div>
-
-            <div className={cx('bottom')}>
-                <div className={cx('total')}>
-                    Tổng cộng :{' '}
-                    <span className={cx('total-price')}>6.165.000₫</span>
+            {cartList.length > 0 ? (
+                <>
+                    <div className={cx('content')}>
+                        {cartList.map((item, index) => {
+                            return (
+                                <CartItem
+                                    key={index}
+                                    name={item.product.name}
+                                    price={item.product.price.newPrice}
+                                    src={item.product.img[0]}
+                                    quality={item.quality}
+                                    size={item.size}
+                                    productId={item.product.productId}
+                                />
+                            );
+                        })}
+                    </div>
+                    <div className={cx('bottom')}>
+                        <div className={cx('total')}>
+                            Tổng cộng :{' '}
+                            <span className={cx('total-price')}>
+                                {cart.total}₫
+                            </span>
+                        </div>
+                        <div className={cx('btn-group')}>
+                            <Button
+                                primary
+                                large
+                                to={config.publicRoutes.cartPage}
+                            >
+                                Giỏ hàng
+                            </Button>
+                            <Button primary large to="/">
+                                Thanh toán
+                            </Button>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <div className={cx('empty')}>
+                    <p>Không có sản phẩm nào</p>
                 </div>
-                <div className={cx('btn-group')}>
-                    <Button primary large to="/">
-                        Giỏ hàng
-                    </Button>
-                    <Button primary large to="/">
-                        Thanh toán
-                    </Button>
-                </div>
-            </div>
+            )}
         </div>
     );
 };

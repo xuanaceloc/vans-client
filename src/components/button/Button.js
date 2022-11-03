@@ -16,9 +16,12 @@ const Button = ({
     disable,
     children,
     className,
+    onClick,
 }) => {
     let Comp = 'button';
-    const props = {};
+    const props = {
+        onClick,
+    };
     if (href) {
         Comp = 'a';
         props.href = href;

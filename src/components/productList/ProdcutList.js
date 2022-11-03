@@ -7,7 +7,7 @@ import {
     faChevronLeft,
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useContext } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import Button from '../../components/button';
@@ -16,11 +16,10 @@ import style from './ProductList.module.scss';
 
 const cx = classNames.bind(style);
 
-const ProductList = () => {
+const ProductList = ({ list, banner }) => {
     const isTablet = useMediaQuery({ query: '(max-width : 990px)' });
     const prevBtnRef = useRef();
     const nextBtnRef = useRef();
-
     const [slidesPerView, setSlidesPerView] = useState(3);
 
     useEffect(() => {
@@ -36,20 +35,14 @@ const ProductList = () => {
             <div
                 className={cx('banner')}
                 style={{
-                    backgroundImage: `url('https://bizweb.dktcdn.net/100/140/774/themes/827866/assets/bg_module_1.jpg?1666082361733%22')`,
+                    backgroundImage: `url('${banner.img}')`,
                 }}
             >
                 <h2 className={cx('header')}>
-                    <Link to="/">CLASSIC</Link>
+                    <Link to="/">{banner.title}</Link>
                 </h2>
-                <div className={cx('desc')}>
-                    Bộ sưu tập cổ điển
-                    <br />
-                    Những phiên bản bất tử
-                    <br />
-                    từ năm 1966
-                </div>
-                <Button className={cx('more-btn')} outline to="/">
+                <div className={cx('desc')}>{banner.desc}</div>
+                <Button className={cx('more-btn')} outline to={banner.path}>
                     Xem thêm
                 </Button>
             </div>
@@ -63,24 +56,20 @@ const ProductList = () => {
                         swiper.params.navigation.nextEl = nextBtnRef.current;
                     }}
                 >
-                    <SwiperSlide>
-                        <Product />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Product />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Product />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Product />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Product />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Product />
-                    </SwiperSlide>
+                    {list.map((product, index) => {
+                        return (
+                            <SwiperSlide key={index}>
+                                <Product
+                                    brand={product.brand}
+                                    newPrice={product.price.newPrice}
+                                    oldPrice={product.price.oldPrice}
+                                    productName={product.name}
+                                    imgProduct={product.img}
+                                    productId={product.productId}
+                                />
+                            </SwiperSlide>
+                        );
+                    })}
 
                     <button className={cx('prev-btn')} ref={prevBtnRef}>
                         <FontAwesomeIcon icon={faChevronLeft} />

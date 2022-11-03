@@ -7,16 +7,24 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import Tippy from '@tippyjs/react/headless';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import style from './Actions.module.scss';
+import config from '../../../config';
 import Cart from '../cart';
+import { CartContext } from '../../../context/cart';
 
 const cx = classnames.bind(style);
 
 const Actions = ({ onOpenMenu }) => {
     const isDesktop = useMediaQuery({ query: '(min-width : 990px)' });
     const [qualityCart, setQualityCart] = useState(0);
+    const { cart } = useContext(CartContext);
+
+    useEffect(() => {
+        setQualityCart(cart.cartList.length);
+    }, [cart]);
 
     return (
         <div className={cx('container')}>
@@ -62,12 +70,15 @@ const Actions = ({ onOpenMenu }) => {
                         </div>
                     )}
                 >
-                    <div className={cx('item')}>
+                    <Link
+                        to={config.publicRoutes.cartPage}
+                        className={cx('item')}
+                    >
                         <FontAwesomeIcon icon={faBagShopping} />
                         <span className={cx('item-quality')}>
                             {qualityCart}
                         </span>
-                    </div>
+                    </Link>
                 </Tippy>
             </span>
         </div>

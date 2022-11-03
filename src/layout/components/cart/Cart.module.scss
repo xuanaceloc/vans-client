@@ -2,6 +2,7 @@
     max-width: 285px;
     padding: 15px 0 15px 15px;
     background-color: #fff;
+    display: block;
 }
 
 .content {
@@ -123,4 +124,11 @@
 .total-price {
     color: var(--red-color);
     font-weight: 400;
+}
+
+// empty
+.empty {
+    p {
+        padding: 0 20px;
+    }
 }

@@ -25,8 +25,12 @@ export const publicRoutes = {
     sizeChart: '/size-chart',
     aboutUs: '/about-us',
     latestVansNews: '/latest-vans-new',
+    latestVansNewsDetail: '/latest-vans-new-detail',
 
     heThongCuaHang: '/he-thong-cua-hang',
     chinhSach: '/chinh-sach',
     doiTraBaoHanh: '/chinh-sach-doi-tra-va-bao-hanh',
+    showProduct: '/product',
+
+    cartPage: '/cart-page',
 };

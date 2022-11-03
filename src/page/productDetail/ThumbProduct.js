@@ -6,49 +6,74 @@ import {
     faChevronLeft,
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Navigation } from 'swiper';
+import { useMediaQuery } from 'react-responsive';
 
 import style from './ProductDetail.module.scss';
 
 const cx = classNames.bind(style);
 
-const ThumbProduct = () => {
+const ThumbProduct = ({ productImg = [] }) => {
+    const isMediumDesktop = useMediaQuery({ query: '(max-width : 1200px)' });
+    const isLowDesktop = useMediaQuery({ query: '(max-width : 990px)' });
+    const isTablet = useMediaQuery({ query: '(max-width : 768px)' });
+    const [slidesPerView, setSlidesPerView] = useState(4);
+
     const prevBtnRef = useRef();
     const nextBtnRef = useRef();
 
-    const [thumbImg, setThumbImg] = useState(
-        'https://bizweb.dktcdn.net/thumb/large/100/140/774/products/giay-vans-x-moca-judy-baca-authentic-vn0a5krdyq8-1.jpg?v=1663176378000',
-    );
+    const [thumbImg, setThumbImg] = useState(productImg[0]);
 
     const handleActiveThumb = (e) => {
         setThumbImg(e.target.src);
     };
 
+    // set thumb img initial
+    useEffect(() => {
+        setThumbImg(productImg[0]);
+    }, [productImg]);
+
+    // set slide per view
+    useEffect(() => {
+        if (isTablet) {
+            setSlidesPerView(3);
+        } else if (isLowDesktop) {
+            setSlidesPerView(4);
+        } else if (isMediumDesktop) {
+            setSlidesPerView(3);
+        } else {
+            setSlidesPerView(4);
+        }
+    }, [isMediumDesktop, isLowDesktop, isTablet]);
+
     return (
-        <div>
+        <div className={cx('thumb-container')}>
             <div className={cx('thumb')}>
                 <img src={thumbImg} alt="" />
             </div>
             <div className={cx('slide')}>
                 <Swiper
-                    slidesPerView={4}
+                    slidesPerView={slidesPerView}
                     modules={[Navigation]}
                     onBeforeInit={(swiper) => {
                         swiper.params.navigation.prevEl = prevBtnRef.current;
                         swiper.params.navigation.nextEl = nextBtnRef.current;
                     }}
                 >
-                    <SwiperSlide>
-                        <div className={cx('slide-img')}>
-                            <img
-                                src="https://bizweb.dktcdn.net/thumb/small/100/140/774/products/vans-old-skool-black-white-vn000d3hy28-1.jpg?v=1661757331440"
-                                onClick={handleActiveThumb}
-                                alt=""
-                            />
-                        </div>
-                    </SwiperSlide>
-
+                    {productImg.map((src, index) => {
+                        return (
+                            <SwiperSlide key={index}>
+                                <div className={cx('slide-img')}>
+                                    <img
+                                        src={src}
+                                        onClick={handleActiveThumb}
+                                        alt=""
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        );
+                    })}
                     <button className={cx('prev-btn')} ref={prevBtnRef}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>

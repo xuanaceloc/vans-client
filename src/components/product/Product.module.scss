@@ -2,7 +2,7 @@
     width: 100%;
     margin-right: 10px;
     background-color: #fff;
-    padding-bottom: 10px;
+    padding: 0 5px 10px;
 }
 
 .content {
@@ -13,7 +13,7 @@
             display: flex;
         }
         .content-thumb {
-            opacity: 0.6;
+            opacity: 0.4;
         }
     }
 }
@@ -30,6 +30,7 @@
     height: 25px;
     line-height: 25px;
     text-align: center;
+    z-index: 20;
 }
 
 .new {
@@ -40,6 +41,7 @@
     font-size: 13px;
     text-decoration: underline;
     color: #41bf48;
+    z-index: 20;
 }
 
 .content-thumb {
@@ -48,7 +50,7 @@
     height: 264px;
     img {
         width: 100%;
-        object-fit: fill;
+        object-fit: contain;
     }
 }
 
@@ -103,6 +105,10 @@
     text-overflow: ellipsis;
     overflow: hidden;
     text-transform: uppercase;
+
+    &:hover {
+        color: var(--red-color);
+    }
 }
 
 .brand {

@@ -6,17 +6,19 @@ import {
     faChevronLeft,
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useContext } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import Product from '../product';
 import style from './BestSeller.module.scss';
 import images from '../../assets';
+import { ProductContext } from '../../context/product';
 
 const cx = classNames.bind(style);
 
 const BestSeller = () => {
     const isDesktop = useMediaQuery({ query: '(min-width : 990px)' });
+    const { getBestSeller, productList } = useContext(ProductContext);
     const [slidesPerView, setSlidesPerView] = useState(3);
     const prevBtnRef = useRef();
     const nextBtnRef = useRef();
@@ -28,6 +30,10 @@ const BestSeller = () => {
             setSlidesPerView(2);
         }
     }, [isDesktop]);
+
+    useEffect(() => {
+        getBestSeller();
+    }, []);
 
     return (
         <div
@@ -51,24 +57,19 @@ const BestSeller = () => {
                                 nextBtnRef.current;
                         }}
                     >
-                        <SwiperSlide>
-                            <Product />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Product />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Product />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Product />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Product />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Product />
-                        </SwiperSlide>
+                        {productList.bestSeller.map((data, index) => {
+                            return (
+                                <SwiperSlide key={index}>
+                                    <Product
+                                        brand={data.brand}
+                                        productName={data.name}
+                                        newPrice={data.price.newPrice}
+                                        imgProduct={data.img}
+                                        productId={data.productId}
+                                    />
+                                </SwiperSlide>
+                            );
+                        })}
 
                         <button className={cx('prev-btn')} ref={prevBtnRef}>
                             <FontAwesomeIcon icon={faChevronLeft} />
