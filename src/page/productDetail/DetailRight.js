@@ -15,11 +15,10 @@ const DetailRight = ({
     price = { newPrice: '', oldPrice: '' },
     brand,
     productId,
-    size = [],
+    size = {},
     detail = '',
 }) => {
     const { cart, addProductCart } = useContext(CartContext);
-
     const [sizeSelect, setSizeSelect] = useState();
     const [isSoldOut, setIsSoldOut] = useState(false);
     const [selectQuality, setSelectQuality] = useState(1);
@@ -35,6 +34,14 @@ const DetailRight = ({
             setShowSize(true);
         }
     }, [detail]);
+
+    // set size select default
+    useEffect(() => {
+        const key = Object.keys(size).find((key) => {
+            return !!size[key];
+        });
+        setSizeSelect(key);
+    }, [size]);
 
     const handleIncreaseQuality = () => {
         setSelectQuality((prev) => prev + 1);
@@ -109,7 +116,9 @@ const DetailRight = ({
                                     <label
                                         htmlFor={`size-${key}`}
                                         className={
-                                            !size[key] ? cx('sold-out') : ''
+                                            size[key] === 0 || size[key] === '0'
+                                                ? cx('sold-out')
+                                                : ''
                                         }
                                     >
                                         {key}

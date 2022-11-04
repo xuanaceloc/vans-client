@@ -42,6 +42,7 @@ function App() {
                                                         }
                                                         login={route.login}
                                                         hero={route.hero}
+                                                        data={route.data}
                                                     />
                                                 </Layout>
                                             }

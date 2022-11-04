@@ -7,6 +7,13 @@
     padding: 0 15px 20px;
 }
 
+.empty {
+    padding: 20px;
+    width: 80%;
+    background-color: #fcf8e3;
+    margin: 0 auto 30px;
+}
+
 @media screen and (max-width: 990px) {
     .content {
         grid-template-columns: 33.33% 33.33% 33.33%;

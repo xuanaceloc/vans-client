@@ -7,6 +7,7 @@ import {
     SET_TOTAL,
     SET_QUALITY,
 } from '../reducers/constant';
+import { apiUrl } from './constant';
 
 export const CartContext = createContext();
 
@@ -34,7 +35,7 @@ const CartContextProvider = ({ children }) => {
         } else {
             try {
                 await axios
-                    .get('http://localhost:5000/api/product/id', {
+                    .get(`${apiUrl}/product/id`, {
                         params: { productId: productId },
                     })
                     .then((res) => {

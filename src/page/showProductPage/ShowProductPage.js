@@ -40,21 +40,25 @@ const ShowProductPage = ({ collection, hero }) => {
             <Hero title={hero.title} subTitle={hero.subTitle} />
             <Sidebar />
             <div className={cx('content')}>
-                {productList.data.map((data, index) => {
-                    return (
-                        <Product
-                            key={index}
-                            brand={data.brand}
-                            productName={data.name}
-                            newPrice={data.price.newPrice}
-                            imgProduct={data.img}
-                            productId={data.productId}
-                            newProduct={data.newArrival}
-                            sale={data.sale}
-                        />
-                    );
-                })}
+                {!!productList.data &&
+                    productList.data.map((data, index) => {
+                        return (
+                            <Product
+                                key={index}
+                                brand={data.brand}
+                                productName={data.name}
+                                newPrice={data.price.newPrice}
+                                imgProduct={data.img}
+                                productId={data.productId}
+                                newProduct={data.newArrival}
+                                sale={data.sale}
+                            />
+                        );
+                    })}
             </div>
+            {!!productList.data && (
+                <div className={cx('empty')}>Không có sản phẩm.</div>
+            )}
             <BestSeller />
         </div>
     );

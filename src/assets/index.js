@@ -23,6 +23,9 @@ const images = {
     bannerClassic: require('./banner_classic.webp'),
     bannerNewArrival: require('./banner_new_arrival.webp'),
     bannerBestSeller: require('./banner_best_seller.webp'),
+
+    heThongCuaHang1: require('./heThongCuaHang_1.webp'),
+    heThongCuaHang2: require('./heThongCuaHang_2.webp'),
 };
 
 export default images;

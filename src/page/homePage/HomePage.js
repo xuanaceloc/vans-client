@@ -27,7 +27,7 @@ const HomePage = () => {
                 />
                 <ProductList
                     list={productList.dataHome.bestSeller}
-                    banner={config.banner.newArrival}
+                    banner={config.banner.bestSeller}
                 />
             </div>
             <LatestNews />

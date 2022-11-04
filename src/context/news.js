@@ -6,6 +6,7 @@ import {
     SET_CURRENT_NEWS,
 } from '../reducers/constant';
 import newsReducer from '../reducers/news';
+import { apiUrl } from './constant';
 
 export const NewsContext = createContext();
 
@@ -19,7 +20,7 @@ const NewsContextProvider = ({ children }) => {
     // get news list
     const getNewsList = async () => {
         try {
-            await axios.get('http://localhost:5000/api/news').then((res) => {
+            await axios.get(`${apiUrl}/news`).then((res) => {
                 dispatch({ type: SET_NEWS_LIST, payload: res.data.newsList });
             });
         } catch (error) {
@@ -41,7 +42,7 @@ const NewsContextProvider = ({ children }) => {
         }
         try {
             await axios
-                .get('http://localhost:5000/api/news/detail', {
+                .get(`${apiUrl}/news/detail`, {
                     params: { id: id },
                 })
                 .then((res) => {

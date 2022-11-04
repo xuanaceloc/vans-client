@@ -63,6 +63,18 @@ const heroData = {
         title: 'Giỏ hàng',
         subTitle: 'Giỏ hàng',
     },
+    chinhsach: {
+        title: 'Chính sách',
+        subTitle: 'Chính sách',
+    },
+    baoHanhDoitra: {
+        title: 'Chính Sách Đổi Hàng Và Bảo Hành Tại VANS Việt Nam',
+        subTitle: 'Chính Sách Đổi Hàng Và Bảo Hành Tại VANS Việt Nam',
+    },
+    heThongCuaHang: {
+        title: 'Danh Sách Các Store VANS Ủy Quyền Chính Thức Tại Việt Nam',
+        subTitle: 'Danh Sách Các Store VANS Ủy Quyền Chính Thức Tại Việt Nam',
+    },
 };
 
 export default heroData;

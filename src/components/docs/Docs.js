@@ -12,6 +12,7 @@ const Docs = ({ data = [] }) => {
                     <div key={index} className={cx('item')}>
                         {!!data.src && <img src={data.src} alt="" />}
                         {!!data.subTitle && <span>{data.subTitle}</span>}
+                        {!!data.strong && <strong>{data.strong}</strong>}
                         {!!data.content && (
                             <p className={cx({ center: data.center })}>
                                 {data.content}

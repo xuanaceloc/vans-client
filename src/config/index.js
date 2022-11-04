@@ -9,6 +9,7 @@ import collectionConstant from './collectionConstant';
 import { DATA_ABOUT_US } from './aboutUsData';
 import heroData from './heroData';
 import { banner } from './banner';
+import { chinhSach, baoHanhDoiTra, heThongCuaHang } from './infoPage';
 
 const config = {
     publicRoutes,
@@ -22,6 +23,9 @@ const config = {
     DATA_ABOUT_US,
     heroData,
     banner,
+    chinhSach,
+    baoHanhDoiTra,
+    heThongCuaHang,
 };
 
 export default config;

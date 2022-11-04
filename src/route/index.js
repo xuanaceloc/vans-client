@@ -8,6 +8,7 @@ import AboutUs from '../page/aboutUs';
 import LatestVansNewsPage from '../page/latestVansNewsPage';
 import VansNewsDetail from '../page/vansNewsDetail';
 import CartPage from '../page/cartPage';
+import InfoPage from '../page/infoPage';
 
 export const routes = [
     {
@@ -132,5 +133,23 @@ export const routes = [
         path: config.publicRoutes.cartPage,
         component: CartPage,
         hero: config.heroData.cart,
+    },
+    {
+        path: config.publicRoutes.chinhSach,
+        component: InfoPage,
+        data: config.chinhSach,
+        hero: config.heroData.chinhsach,
+    },
+    {
+        path: config.publicRoutes.doiTraBaoHanh,
+        component: InfoPage,
+        data: config.baoHanhDoiTra,
+        hero: config.heroData.baoHanhDoitra,
+    },
+    {
+        path: config.publicRoutes.heThongCuaHang,
+        component: InfoPage,
+        data: config.heThongCuaHang,
+        hero: config.heroData.heThongCuaHang,
     },
 ];

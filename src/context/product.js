@@ -9,6 +9,7 @@ import {
 import axios from 'axios';
 
 import { productListReducer } from '../reducers/product';
+import { apiUrl } from './constant';
 
 export const ProductContext = createContext();
 
@@ -35,15 +36,13 @@ const ProductContextProvider = ({ children }) => {
     // get all Product
     const getAllProduct = async () => {
         try {
-            await axios
-                .get('http://localhost:5000/api/product/all-vans')
-                .then((res) => {
-                    dispatch({
-                        type: SET_LIST_PRODUCT,
-                        payload: res.data.product,
-                    });
-                    return res.product;
+            await axios.get(`${apiUrl}/product/all-vans`).then((res) => {
+                dispatch({
+                    type: SET_LIST_PRODUCT,
+                    payload: res.data.product,
                 });
+                return res.product;
+            });
         } catch (error) {
             console.log(error);
         }
@@ -53,7 +52,7 @@ const ProductContextProvider = ({ children }) => {
     const getCollectionProduct = async (collection, limit) => {
         try {
             await axios
-                .get('http://localhost:5000/api/product/collection', {
+                .get(`${apiUrl}/product/collection`, {
                     params: { collection: collection, limit: limit },
                 })
                 .then((res) => {
@@ -73,14 +72,14 @@ const ProductContextProvider = ({ children }) => {
         let dataList = [];
         try {
             await axios
-                .get('http://localhost:5000/api/product/collection', {
+                .get(`${apiUrl}/product/collection`, {
                     params: { collection: 'Vans Wallet' },
                 })
                 .then((res) => {
                     dataList = [...dataList, ...res.data.product];
                 });
             await axios
-                .get('http://localhost:5000/api/product/collection', {
+                .get(`${apiUrl}/product/collection`, {
                     params: { collection: 'Backpack' },
                 })
                 .then((res) => {
@@ -96,15 +95,13 @@ const ProductContextProvider = ({ children }) => {
     // get NewArrival Product
     const getNewArrivalProduct = async () => {
         try {
-            await axios
-                .get('http://localhost:5000/api/product/new-arrival')
-                .then((res) => {
-                    dispatch({
-                        type: SET_LIST_PRODUCT,
-                        payload: res.data.product,
-                    });
-                    return res.product;
+            await axios.get(`${apiUrl}/product/new-arrival`).then((res) => {
+                dispatch({
+                    type: SET_LIST_PRODUCT,
+                    payload: res.data.product,
                 });
+                return res.product;
+            });
         } catch (error) {
             console.log(error);
         }
@@ -114,7 +111,7 @@ const ProductContextProvider = ({ children }) => {
     const getSaleOffProduct = async (sale) => {
         try {
             await axios
-                .get('http://localhost:5000/api/product/sale-off', {
+                .get(`${apiUrl}/product/sale-off`, {
                     params: { sale: sale },
                 })
                 .then((res) => {
@@ -136,7 +133,7 @@ const ProductContextProvider = ({ children }) => {
         }
         try {
             await axios
-                .get('http://localhost:5000/api/product/id', {
+                .get(`${apiUrl}/product/id`, {
                     params: { productId: productId },
                 })
                 .then((res) => {
@@ -155,15 +152,13 @@ const ProductContextProvider = ({ children }) => {
 
     const getBestSeller = async () => {
         try {
-            await axios
-                .get('http://localhost:5000/api/product/best-seller')
-                .then((res) => {
-                    dispatch({
-                        type: SET_BEST_SELLER,
-                        payload: res.data.product,
-                    });
-                    return res.data.product;
+            await axios.get(`${apiUrl}/product/best-seller`).then((res) => {
+                dispatch({
+                    type: SET_BEST_SELLER,
+                    payload: res.data.product,
                 });
+                return res.data.product;
+            });
         } catch (error) {
             console.log(error);
         }
@@ -172,22 +167,15 @@ const ProductContextProvider = ({ children }) => {
     //get Data For Home Page
     const getDataHome = async () => {
         try {
-            const classic = await axios.get(
-                'http://localhost:5000/api/product/collection',
-                {
-                    params: {
-                        collection: 'Vans Classic',
-                    },
+            const classic = await axios.get(`${apiUrl}/product/collection`, {
+                params: {
+                    collection: 'Vans Classic',
                 },
-            );
+            });
 
-            const newArrival = await axios.get(
-                'http://localhost:5000/api/product/new-arrival',
-            );
+            const newArrival = await axios.get(`${apiUrl}/product/new-arrival`);
 
-            const bestSeller = await axios.get(
-                'http://localhost:5000/api/product/best-seller',
-            );
+            const bestSeller = await axios.get(`${apiUrl}/product/best-seller`);
 
             dispatch({
                 type: SET_DATA_HOME,
