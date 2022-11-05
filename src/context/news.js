@@ -20,9 +20,21 @@ const NewsContextProvider = ({ children }) => {
     // get news list
     const getNewsList = async () => {
         try {
-            await axios.get(`${apiUrl}/news`).then((res) => {
-                dispatch({ type: SET_NEWS_LIST, payload: res.data.newsList });
-            });
+            await axios
+                .get(`${apiUrl}/news`, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': '*',
+                        'Access-Control-Allow-Headers':
+                            "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+                    },
+                })
+                .then((res) => {
+                    dispatch({
+                        type: SET_NEWS_LIST,
+                        payload: res.data.newsList,
+                    });
+                });
         } catch (error) {
             console.log(error);
         }

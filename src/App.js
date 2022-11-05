@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './components/GlobalStyle';
 import { routes } from './route';
 import DefaultLayout from './layout/defaultLayout';
-import UpProduct from './page/upProduct/UpProduct';
 import ProductContextProvider from './context/product';
 import CartContextProvider from './context/cart';
 import NewsContextProvider from './context/news';
@@ -16,14 +15,6 @@ function App() {
                     <GlobalStyle>
                         <Router>
                             <Routes>
-                                <Route
-                                    path="/123"
-                                    element={
-                                        <DefaultLayout>
-                                            <UpProduct />
-                                        </DefaultLayout>
-                                    }
-                                />
                                 {routes.map((route, index) => {
                                     const Comp = route.component;
                                     let Layout = DefaultLayout;

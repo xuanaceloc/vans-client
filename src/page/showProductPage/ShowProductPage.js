@@ -56,7 +56,7 @@ const ShowProductPage = ({ collection, hero }) => {
                         );
                     })}
             </div>
-            {!!productList.data && (
+            {!productList.data[0] && (
                 <div className={cx('empty')}>Không có sản phẩm.</div>
             )}
             <BestSeller />
