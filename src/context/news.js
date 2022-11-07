@@ -6,16 +6,13 @@ import {
     SET_CURRENT_NEWS,
 } from '../reducers/constant';
 import newsReducer from '../reducers/news';
+import { initialNews } from '../reducers/news';
 import { apiUrl } from './constant';
 
 export const NewsContext = createContext();
 
 const NewsContextProvider = ({ children }) => {
-    const [news, dispatch] = useReducer(newsReducer, {
-        newsList: [],
-        currentNews: null,
-        currentId: '',
-    });
+    const [news, dispatch] = useReducer(newsReducer, initialNews);
 
     // get news list
     const getNewsList = async () => {

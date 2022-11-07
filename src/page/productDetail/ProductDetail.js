@@ -7,6 +7,7 @@ import ThumbProduct from './ThumbProduct';
 import Description from './Description';
 import style from './ProductDetail.module.scss';
 import { ProductContext } from '../../context/product';
+import BestSeller from '../../components/bestSeller';
 
 const cx = classNames.bind(style);
 
@@ -39,6 +40,7 @@ const ProductDetail = () => {
                 productImg={productList.currentProduct.img}
                 table={productList.currentProduct.detail}
             />
+            <BestSeller />
         </div>
     );
 };

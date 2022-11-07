@@ -406,3 +406,9 @@
         margin-bottom: 10px;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .right-btn-group {
+        flex-wrap: wrap;
+    }
+}

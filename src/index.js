@@ -2,11 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ProductContextProvider from './context/product';
+import CartContextProvider from './context/cart';
+import NewsContextProvider from './context/news';
+import GlobalStyle from './components/GlobalStyle';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <App />
+        <ProductContextProvider>
+            <CartContextProvider>
+                <NewsContextProvider>
+                    <GlobalStyle>
+                        <App />
+                    </GlobalStyle>
+                </NewsContextProvider>
+            </CartContextProvider>
+        </ProductContextProvider>
     </React.StrictMode>,
 );
 

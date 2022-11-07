@@ -6,6 +6,19 @@ import {
     SET_DATA_HOME,
 } from './constant';
 
+export const initialProductList = {
+    isLoading: true,
+    data: [],
+    currentProduct: [],
+    currentProductId: '',
+    bestSeller: [],
+    dataHome: {
+        classic: [],
+        newArrival: [],
+        bestSeller: [],
+    },
+};
+
 export const productListReducer = (state, action) => {
     const { type, payload } = action;
 

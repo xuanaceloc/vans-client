@@ -8,24 +8,16 @@ import {
 } from '../reducers/constant';
 import axios from 'axios';
 
-import { productListReducer } from '../reducers/product';
+import { productListReducer, initialProductList } from '../reducers/product';
 import { apiUrl } from './constant';
 
 export const ProductContext = createContext();
 
 const ProductContextProvider = ({ children }) => {
-    const [productList, dispatch] = useReducer(productListReducer, {
-        isLoading: true,
-        data: [],
-        currentProduct: [],
-        currentProductId: '',
-        bestSeller: [],
-        dataHome: {
-            classic: [],
-            newArrival: [],
-            bestSeller: [],
-        },
-    });
+    const [productList, dispatch] = useReducer(
+        productListReducer,
+        initialProductList,
+    );
 
     // set current product is
     const setCurrentProductId = (id) => {

@@ -1,5 +1,7 @@
 import { SET_NEWS_LIST, SET_NEWS_ID, SET_CURRENT_NEWS } from './constant';
 
+export const initialNews = { newsList: [], currentNews: null, currentId: '' };
+
 const newsReducer = (state, action) => {
     const { type, payload } = action;
 
